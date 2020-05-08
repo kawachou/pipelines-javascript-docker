@@ -78,11 +78,11 @@ stages:
               scriptLocation: inlineScript
               azureSubscription: $(azureConnection)
               inlineScript: |
-                clusterId="/subscriptions/6188c603-e37d-4eb2-a0ce-eeccd40098e5/resourcegroups/pasturerg/providers/Microsoft.ContainerService/managedClusters/pasturecc"
-                resourceGroupName=$(echo "$clusterId" | cut -d '/' -f5)
-                clusterName=$(echo "$clusterId" | cut -d '/' -f9)
+                $clusterId="/subscriptions/6188c603-e37d-4eb2-a0ce-eeccd40098e5/resourcegroups/pasturerg/providers/Microsoft.ContainerService/managedClusters/pasturecc"
+                $resourceGroupName=$(echo "$clusterId" | cut -d '/' -f5)
+                $clusterName=$(echo "$clusterId" | cut -d '/' -f9)
                 az aks use-dev-spaces -n $clusterName -g $resourceGroupName -s default -y
-                hostSuffix=$(azds show-context -o json | ConvertFrom-Json).controller.hostSuffix
+                $hostSuffix=$(azds show-context -o json | ConvertFrom-Json).controller.hostSuffix
                 echo "##vso[task.setvariable variable=HostSuffix]$hostSuffix"
 
           - task: KubernetesManifest@0
@@ -143,9 +143,9 @@ stages:
               scriptLocation: inlineScript
               azureSubscription: $(azureConnection)
               inlineScript: |
-                clusterId="/subscriptions/6188c603-e37d-4eb2-a0ce-eeccd40098e5/resourcegroups/pasturerg/providers/Microsoft.ContainerService/managedClusters/pasturecc"
-                resourceGroupName=$(echo "$clusterId" | cut -d '/' -f5)
-                clusterName=$(echo "$clusterId" | cut -d '/' -f9)
+                $clusterId="/subscriptions/6188c603-e37d-4eb2-a0ce-eeccd40098e5/resourcegroups/pasturerg/providers/Microsoft.ContainerService/managedClusters/pasturecc"
+                $resourceGroupName=$(echo "$clusterId" | cut -d '/' -f5)
+                $clusterName=$(echo "$clusterId" | cut -d '/' -f9)
                 az aks use-dev-spaces -n $clusterName -g $resourceGroupName -s default -y
                 $hostSuffix=$(azds show-context -o json | ConvertFrom-Json).controller.hostSuffix
                 echo "##vso[task.setvariable variable=HostSuffix]$hostSuffix"
