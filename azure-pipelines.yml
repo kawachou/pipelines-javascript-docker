@@ -139,7 +139,7 @@ stages:
           - task: AzureCLI@2
             displayName: get host suffix
             inputs:
-              scriptType: bash
+              scriptType: pscore
               scriptLocation: inlineScript
               azureSubscription: $(azureConnection)
               inlineScript: |
